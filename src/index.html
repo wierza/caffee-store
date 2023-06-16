@@ -5,13 +5,71 @@
     <title>Caffe Store</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header class="header">
-        <div class="container">
-
+        <div class="nav">
+            <ul>
+                <li><a class="navbar-links" href="#home">HOME</a></li>
+                <li><a class="navbar-links" href="#products">PRODUCTS</a></li>
+                <li><a class="navbar-links" id="contact-nav" href="#contact">CONTACT</a></li>
+            </ul>
         </div>
-
+        <div class="small-logo">
+            <span class="small-logo-text">EL TIGRE <br> <span>VENEZUELA COFFEE BEANS</span></span>
+        </div>
+        <div class="big-logo">
+            <span class="big-logo-text">HOME OF<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORIGINAL TASTES</span>
+        </div>
+        <div class="discover">
+            <span class="discover-text">DISCOVER</span>
+            <i class="icon-arrow"></i>
+        </div>
     </header>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+    <div id="pages">
+        <section id="home" class="page-home">
+        </section>
+        <section id="products" class="page-products">
+        </section>
+        <section id="contact" class="page-contact">
+        </section>
+    </div>
+
+<!--Home-->
+<script id="template-home-widget" type="text/x-handlebars-template">
+    <h1 class="page-title home-title">PRODUCTS</h1>
+    <div class="product-list">
+        {{#each products}}
+          <div class="product">
+            <h2>{{name}}</h2>
+            <p>{{description}}</p>
+            <span class="price">{{price}}</span>
+          </div>
+        {{/each}}
+      </div>
+</script>
+
+<!--Products-->
+<script id="template-products-widget" type="text/x-handlebars-template">
+    <h1 class="page-title product-title">PRODUCTS</h1>
+    <div class="product-list">
+        {{#each products}}
+          <div class="product">
+            <h2>{{name}}</h2>
+            <p>{{description}}</p>
+            <span class="price">{{price}}</span>
+          </div>
+        {{/each}}
+      </div>
+</script>
+
+<!--Contact-->
+<script id="template-contact-widget" type="text/x-handlebars-template">
+    <h1 class="page-title contact-title">CONTACT</h1>
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="js/script.js" type="module"></script>
+
 </body>
 </html>
