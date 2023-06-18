@@ -1,7 +1,7 @@
 export const select = {
   templateOf: {
     homeWidget: '#template-home-widget',
-    productsWidget: '#template-products-widget',
+    productWidget: '#template-products-widget',
     contactWidget: '#template-contact-widget',
   },
   containerOf: {
@@ -10,18 +10,22 @@ export const select = {
     products: '.page-products',
     contact: '.page-contact',
   },
-  nav: {
-    links: '.navbar-links a',
-    contact: '#contact-nav',
+  navLinks: {
+    links: '.navbar a',
   },
   home: {
-    title: '.home-title'
+    productsHome: '.home-products',
   },
   products: {
-    title: '.products-title'
+    
   },
   contact: {
-    title: '.contact-title'
+    submitBtn: '#submit-btn',
+    input: {
+      name: '#name',
+      title: '#title',
+      message: '#message',
+    }
   },
 };
 export const settings = {
@@ -33,7 +37,7 @@ export const settings = {
 
 export const templates ={
   homeWidget: Handlebars.compile(document.querySelector(select.templateOf.homeWidget).innerHTML),
-  productsWidget: Handlebars.compile(document.querySelector(select.templateOf.productsWidget).innerHTML),
+  productWidget: Handlebars.compile(document.querySelector(select.templateOf.productWidget).innerHTML),
   contactWidget: Handlebars.compile(document.querySelector(select.templateOf.contactWidget).innerHTML),
 };
 

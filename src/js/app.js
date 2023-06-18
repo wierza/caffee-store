@@ -1,14 +1,32 @@
 import { settings, select, classNames } from './settings.js';
 import Home from './components/Home.js';
 import Contact from './components/Contact.js';
-import Products from './components/Products.js';
+import Product from './components/Product.js';
+
 const app = {
+
+  initData: function() {
+    const thisApp=this;
+
+    this.data = {};
+
+    const url = settings.db.url + '/' + settings.db.products;
+    
+    fetch(url)
+      .then(function (rawResponse) {
+        return rawResponse.json();
+      })
+      .then(function (parsedResponse) {
+        thisApp.data.products = parsedResponse;
+        thisApp.initProducts(); 
+      });
+  },
 
   initPages: function(){
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
-    thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.navLinks = document.querySelectorAll(select.navLinks.links);
 
     const idFromHash = window.location.hash.replace('#/', '');
 
@@ -27,71 +45,55 @@ const app = {
       link.addEventListener('click', function(event){
         const clickedElement = this;
         event.preventDefault();
-        /* get page id from href attribute */
+       
         const id = clickedElement.getAttribute('href').replace('#', '');
-        /* run thisApp.activatePage eith that id */
+      
         thisApp.activatePage(id);
 
-        /*change URL hash */
         window.location.hash = '#/' + id;
-
       });
     }
-    
   },
 
   activatePage: function(pageId){
     const thisApp = this;
-    /*add class 'active' to maching page, remove from non-maching*/
+  
     for(let page of thisApp.pages){
       page.classList.toggle(classNames.pages.active, page.id == pageId);
     }
-    /*add class 'active' to maching link, remove from non-maching*/
-    for(let link of thisApp.navLinks){
-      link.classList.toggle(
-        classNames.nav.active, 
-        link.getAttribute ('href') == '#' + pageId);
-    }
 
+    for(let link of thisApp.navLinks){
+      link.classList.toggle(classNames.nav.active, link.getAttribute ('href') == '#' + pageId);
+    }
   },
 
-  initData: function() {
-    const url = settings.db.url + '/' + settings.db.products;
-    this.data = {};
-    fetch(url)
-      .then((rawResponse) => {
-        return rawResponse.json();
-      })
-      .then((parsedResponse) => {
-        this.data.products = parsedResponse;
-        
-      });
+
+  initProducts: function () {
+    const thisApp = this;
+
+    new Product(thisApp.data.products);
+    
+    console.log('thisApp.data.products', thisApp.data.products);
   },
 
   initHome: function(){
     const thisApp = this;
     const homeContainer = document.querySelector(select.containerOf.home);
-    thisApp.home = new Home(homeContainer, thisApp.data);
+    thisApp.home = new Home(homeContainer);
   },
 
-  initProducts: function(){
-    const thisApp = this;
-    const productsContainer = document.querySelector(select.containerOf.products);
-    thisApp.products = new Products(productsContainer, thisApp.data);
-  },
 
   initContact: function(){
     const thisApp = this;
     const contactContainer = document.querySelector(select.containerOf.contact);
-    thisApp.contact = new Contact(contactContainer, thisApp.data);
+    thisApp.contact = new Contact(contactContainer);
   },
 
   init: function() {
     const thisApp = this;
-    thisApp.initPages();
     thisApp.initData();
+    thisApp.initPages();
     thisApp.initHome();
-    thisApp.initProducts();
     thisApp.initContact();
   },
 };

@@ -1,0 +1,27 @@
+@import "variables";
+
+.form-control {
+  width: 300px;
+  border: 1px solid
+  
+}
+
+.form-floating {
+  margin-top: 50px;
+
+  .label-text {
+    font-family: $font-text;
+    
+  }
+}
+
+
+.submit-button {
+  text-align: center;
+
+  .btn {
+    font-family: $font-text;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+  }
+}

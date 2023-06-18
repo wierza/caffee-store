@@ -2,56 +2,133 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caffe Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <header class="header">
-        <div class="nav">
-            <ul>
-                <li><a class="navbar-links" href="#home">HOME</a></li>
-                <li><a class="navbar-links" href="#products">PRODUCTS</a></li>
-                <li><a class="navbar-links" id="contact-nav" href="#contact">CONTACT</a></li>
-            </ul>
-        </div>
-        <div class="small-logo">
-            <span class="small-logo-text">EL TIGRE <br> <span>VENEZUELA COFFEE BEANS</span></span>
-        </div>
-        <div class="big-logo">
-            <span class="big-logo-text">HOME OF<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORIGINAL TASTES</span>
-        </div>
-        <div class="discover">
-            <span class="discover-text">DISCOVER</span>
-            <i class="icon-arrow"></i>
+    <header class="splash">
+        <div class="container">
+            <div class="nav">
+                <ul class = "navbar">
+                    <li><a class="navbar-links" href="#home">HOME</a></li>
+                    <li><a class="navbar-links" href="#products">PRODUCTS</a></li>
+                    <li><a class="navbar-links" id="contact-nav" href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <div class="small-logo">
+                <span class="small-logo-text">EL TIGRE <br> <span>VENEZUELA COFFEE BEANS</span></span>
+            </div>
+            <div class="big-logo">
+                <span class="big-logo-text">HOME OF<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORIGINAL TASTES</span>
+            </div>
+            <div class="discover">
+                <span class="discover-text">DISCOVER</span>
+                <i class="icon-arrow"></i>
+            </div>
         </div>
     </header>
+
     <div id="pages">
-        <section id="home" class="page-home">
+        <section id="home">
+            <div class="page-home"></div>
         </section>
-        <section id="products" class="page-products">
+        <section id="products">
+            <div class="page-products"></div>
         </section>
-        <section id="contact" class="page-contact">
+        <section id="contact">
+            <div class="page-contact"></div>
         </section>
     </div>
-
 <!--Home-->
 <script id="template-home-widget" type="text/x-handlebars-template">
-    <h1 class="page-title home-title">PRODUCTS</h1>
+    <div class="home-products"></div>
+    <div class="about-us">
+        <div class="container py-5">
+            <h1 class="about-us-title page-title">ABOUT US</h1>
+            <div class="about-us-text">
+                <p class="description">Who are we? Just a bucnh of friends with a love for a good coffee and desire to create something new, something original.<br>Our coffess reflect us - young, wild and free.<br>We are on the journey of new tastes...</p>
+                <p class="signature">Join us!</p>
+            </div>
+        </div>
+    </div>
 </script>
+
 
 <!--Products-->
 <script id="template-products-widget" type="text/x-handlebars-template">
-    <h1 class="page-title product-title">PRODUCTS</h1>
+    <div class="container">
+        <h1 class="product-title page-title">PRODUCTS</h1>
+        {{#each products}}
+          <div class="product my-5">
+            <article class="product-wrapper">
+              <div class="row">
+                <div class="product-text col-12 col-md-6">
+                  <h3 class="product-name">{{title}}</h3>
+                  <div class="product-description">
+                    <p>{{description}}</p>
+                  </div>
+                  <div class="product-ranking">
+                    <p class='roasting'>ROASTING: <span class="number-ranking">{{roasting}}</span></p>
+                    <p class='intensity'>INTENSITY: <span class="number-ranking">{{intensity}}</span></p>
+                  </div>
+                  {{#if mostpopular}}
+                  <div class="mostpopular-product">
+                    <img src='{{mostpopular-image}}' alt="mostpopular-product">
+                  </div>
+                  {{/if}}
+                </div>
+                <div class="product-image col-12 col-md-6">
+                  <img src='{{image}}' alt='prod'>
+                </div>
+              </div>
+            </article>
+          </div>
+        {{/each}}
+      </div>
 </script>
 
 <!--Contact-->
 <script id="template-contact-widget" type="text/x-handlebars-template">
-    <h1 class="page-title contact-title">CONTACT</h1>
+    <div class="container">
+        <div class="contact-page">
+            <h1 class="contact-title page-title">CONTACT</h1>
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="form-floating">
+                  <input id="name" type="name" class="form-control" id="floatingName" placeholder="name">
+                  <label class= "label-text" for="floatingName">NAME</label>
+                </div>                  
+            </div>
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="form-floating mt-4">
+                  <input id="title" type="title" class="form-control" id="floatingName" placeholder="name">
+                  <label class= "label-text" for="floatingName">TITLE</label>
+                </div>                  
+            </div>
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="form-floating mt-4">
+                    <textarea id="textarea" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 150px"></textarea>
+                    <label class= "label-text" for="floatingTextarea2">MESSAGE</label>
+                </div>
+            </div>
+        </div>
+        <div class="submit-button my-5">
+            <button type="button" class="btn btn-primary">SUBMIT</button>
+        </div>
+    </div>
 </script>
+<div class="contact-footer">
+    <p class="footer-text"><i class="fa-regular fa-copyright"></i> 2023 EL TIGRE inc.</p>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-<script src="js/script.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="js/app.js" type="module"></script>
 
 </body>
 </html>

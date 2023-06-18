@@ -1,25 +1,23 @@
 import { templates, select } from '../settings.js';
+import utils from '../utils.js';
 
 class Home {
-  constructor(element){
+  constructor(){
     const thisHome = this;
-    thisHome.render(element);
+    thisHome.render();
   }
 
-  render(element){
+  render(){
     const thisHome = this;
-    thisHome.dom = {};
-    thisHome.dom.wrapper = element;
+
     const generatedHTML = templates.homeWidget();
-    thisHome.dom.wrapper.innerHTML = generatedHTML;
-    thisHome.dom.title = thisHome.dom.wrapper.querySelector(select.home.title);
-    thisHome.pages = document.querySelector(select.containerOf.pages).children;
-    thisHome.navLinks = document.querySelectorAll(select.nav.links);
+    const generatedDom = utils.createDOMFromHTML(generatedHTML);
+    const homeWrapper = document.querySelector(select.containerOf.home);
+
+    homeWrapper.appendChild(generatedDom);
+
+    thisHome.dom = {};
   }
 }
-
-
-
-
 
 export default Home;

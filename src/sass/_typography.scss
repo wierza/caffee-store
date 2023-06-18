@@ -1,0 +1,80 @@
+.page-title {
+  font-family: $font-text;
+  font-weight: 600;
+  color: $primaryColor;
+  text-align: center;
+  font-size: 42px;
+  position: relative;
+
+}
+
+.page-title::after {
+  position: absolute;
+  content: '';
+  bottom: -15%;
+  left: 50%;
+  width: 250px;
+  height: 3px;
+  transform: translate(-50%,-50%);
+  background: $primaryColor;
+  
+}
+
+.product-name {
+  font-family: $font-text;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  position: relative;
+}
+
+.product-name::after {
+  position: absolute;
+  content: '';
+  bottom: -22px;
+  left: 0;
+  width: 70px;
+  height: 5px;
+  background: $primaryColor;
+}
+
+.product-description {
+  display: flex;
+  
+  p {
+    font-family: $font-text;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 400;
+    margin: 0 5% 0 15%;
+  }
+}
+  
+.product-ranking {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10%;
+}
+  
+.roasting {
+  font-family: $font-text;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+} 
+  
+.intensity {
+  font-family: $font-text;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.number-ranking {
+  font-family: $font-text;
+  font-size: 20px;
+  font-weight: 700;
+  color: $primaryColor;
+}
+
+  

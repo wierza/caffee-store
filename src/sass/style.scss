@@ -1,6 +1,12 @@
 // normalize default styles
 @import "normalize";
 
+//pages
+
+@import "home";
+@import "product";
+@import "contact";
+
 // Bootstrap
 
 @import "bootstrap/functions";
