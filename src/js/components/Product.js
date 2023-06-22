@@ -20,7 +20,7 @@ class Product {
     const homeProductWrapper = document.querySelector(select.home.productsHome);
 
     productWrapper.appendChild(generatedDom);
-    homeProductWrapper.appendChild(generatedDomHome);
+    homeProductWrapper.prepend(generatedDomHome);
 
     thisProduct.dom = {};
   }
